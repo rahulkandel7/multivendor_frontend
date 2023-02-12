@@ -14,7 +14,18 @@ export default function ManufactureProductCardSlider() {
                     delay: 2500,
                     disableOnInteraction: false,
                 }}
-                slidesPerView={3}
+                slidesPerView={2}
+                breakpoints={{
+                    640: {
+                        slidesPerView: 3,
+                    },
+                    768: {
+                        slidesPerView: 4,
+                    },
+                    1024: {
+                        slidesPerView: 5,
+                    }
+                }}
                 modules={[Autoplay]}
             >
 

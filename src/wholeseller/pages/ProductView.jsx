@@ -89,7 +89,7 @@ export default function ProductView() {
                         </button>
 
                         {/* Profile Card */}
-                        <Link>
+                        <Link to="/viewdistributorprofile">
                             <div className="border mt-3 border-gray-50 shadow-md rounded-md hover:shadow-lg">
                                 <div className="flex items-center justify-center">
                                     <img src="./mloog.png" alt="Company Logo" className="w-12 h-12 rounded-full shadow-sm" />

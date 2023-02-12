@@ -6,6 +6,7 @@ import Login from "./wholeseller/pages/login";
 import ProductView from "./wholeseller/pages/ProductView";
 import Register from "./wholeseller/pages/Register";
 import SubCategory from "./wholeseller/pages/SubCategory";
+import ViewDistributorProfile from "./wholeseller/pages/ViewDistributorProfile";
 
 export default function AppRoutes() {
     return (
@@ -18,6 +19,7 @@ export default function AppRoutes() {
                 <Route path="/category" element={<Category />} />
                 <Route path="/subcategory" element={<SubCategory />} />
                 <Route path="/productview" element={<ProductView />} />
+                <Route path="/viewdistributorprofile" element={<ViewDistributorProfile />} />
             </Route>
 
         </Routes>

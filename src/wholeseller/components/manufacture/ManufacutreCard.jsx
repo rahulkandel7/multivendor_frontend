@@ -1,4 +1,5 @@
 import React from 'react'
+import { CiLocationOn } from 'react-icons/ci'
 import ManufactureProductCardSlider from './ManufactureProductCardSlider'
 
 export default function ManufacutreCard() {
@@ -14,9 +15,18 @@ export default function ManufacutreCard() {
                         <img src="./mloog.png" alt="Company Name" className="w-full h-full object-cover rounded-full " />
                     </div>
                     {/* Company Name */}
-                    <h1 className="text-xl text-gray-700 hover:text-gray-900 cursor-pointer font-semibold">
-                        Company Name PVT. LTD.
-                    </h1>
+                    <div>
+                        <h1 className="text-xl text-gray-700 hover:text-gray-900 cursor-pointer font-semibold">
+                            Company Name PVT. LTD.
+                        </h1>
+                        {/* Location icon and address */}
+                        <div className='flex items-center gap-1'>
+                            <CiLocationOn />
+                            <p className=" text-gray-700 hover:text-gray-900 cursor-pointer">
+                                Chitwan,Nepal
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 {/* Fav and Chat now button */}
                 <div>
@@ -27,18 +37,11 @@ export default function ManufacutreCard() {
 
                 </div>
             </div>
-            {/* Company Description and its products */}
-            <div className="grid grid-cols-3 gap-5 my-5">
-                <div>
-                    {/* Company Description */}
-                    <p className="text-sm  font-light text-justify">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut nam est molestias, eaque ipsa qui ullam error beatae deserunt earum corrupti dolor magni ex exercitationem culpa reiciendis, quas perspiciatis aperiam!
-                    </p>
-                </div>
-                <div className="col-span-2">
-                    {/* Manufactures Products (Home Card) */}
-                    <ManufactureProductCardSlider />
-                </div>
+
+            {/* Manufactures Products (Home Card) */}
+            <div className='my-3'>
+                <ManufactureProductCardSlider />
+
             </div>
         </div>
 
