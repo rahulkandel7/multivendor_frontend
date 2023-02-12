@@ -17,13 +17,13 @@ function SlideShow(props) {
 
                 <SwiperSlide>
                     <div className=" h-full">
-                        <img src="./ads.jpeg" alt="" className=" h-full" />
+                        <img src="./ads.jpeg" alt="" className=" h-full w-full" />
                     </div>
                 </SwiperSlide>
 
                 <SwiperSlide>
                     <div className=" h-full">
-                        <img src="./ads1.jpeg" alt="" className=" h-full" />
+                        <img src="./ads1.jpeg" alt="" className=" h-full w-full" />
                     </div>
                 </SwiperSlide>
 
