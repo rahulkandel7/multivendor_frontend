@@ -3,6 +3,7 @@ import App from "./App";
 import WholeSellerLayout from "./wholeseller/layouts/WholeSellerLayout";
 import Category from "./wholeseller/pages/Category";
 import Login from "./wholeseller/pages/login";
+import ProductView from "./wholeseller/pages/ProductView";
 import Register from "./wholeseller/pages/Register";
 import SubCategory from "./wholeseller/pages/SubCategory";
 
@@ -16,6 +17,7 @@ export default function AppRoutes() {
                 {/* Wholeseller Route */}
                 <Route path="/category" element={<Category />} />
                 <Route path="/subcategory" element={<SubCategory />} />
+                <Route path="/productview" element={<ProductView />} />
             </Route>
 
         </Routes>

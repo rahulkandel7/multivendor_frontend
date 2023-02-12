@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function SubcategoryCard() {
     return (
-        <div>
+        <Link to="/productview">
             <div className=" shadow-sm hover:shadow-md rounded-md w-56 pb-5 mb-5 cursor-pointer">
                 <img src="./ads.jpeg" alt="Product Name" className="object-cover h-36 w-full rounded-md shadow-md" />
                 <p className="text-gray-600 font-bold text-left mt-3 px-3">
@@ -19,6 +20,6 @@ export default function SubcategoryCard() {
                     Contact Supplier
                 </button>
             </div>
-        </div>
+        </Link>
     )
 }
