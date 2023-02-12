@@ -3,6 +3,7 @@ import { GoSearch } from 'react-icons/go';
 import { GrFavorite } from 'react-icons/gr';
 import { VscSignOut } from 'react-icons/vsc';
 import { Outlet } from "react-router";
+import { Link } from 'react-router-dom';
 import { Footer } from '../components/Footer';
 
 function WholeSellerLayout() {
@@ -12,7 +13,9 @@ function WholeSellerLayout() {
             <div className="flex gap-10 items-center justify-between">
                 {/* Logo of the app */}
                 <div>
-                    <img src="./logo.png" alt="Multivendor logo" className='w-52 mt-0' />
+                    <Link to="/">
+                        <img src="./logo.png" alt="Multivendor logo" className='w-52 mt-0' />
+                    </Link>
                 </div>
                 {/* Search Box */}
                 <div className=' flex-1 items-center justify-center flex'>

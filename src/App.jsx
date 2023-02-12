@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import ManufacutreCard from "./wholeseller/components/manufacture/ManufacutreCard";
 import SlideShow from "./wholeseller/components/SlideShow";
 
@@ -80,9 +81,9 @@ function App() {
           {
             categories.map((category) => {
               return (
-                <a key={category.id} className="text-gray-500 w-full  hover:text-gray-800 cursor-pointer">
+                <Link to="/category" key={category.id} className="text-gray-500 w-full  hover:text-gray-800 cursor-pointer">
                   {category.name}
-                </a>
+                </Link>
               )
             })
           }
@@ -98,13 +99,11 @@ function App() {
       </div>
 
       {/* Manufactures Listings */}
-      <ManufacutreCard />
-      <ManufacutreCard />
-      <ManufacutreCard />
-      <ManufacutreCard />
-      <ManufacutreCard />
-      <ManufacutreCard />
-      <ManufacutreCard />
+      {
+        [...Array(10)].map((_) => {
+          return <ManufacutreCard />
+        })
+      }
     </>
   )
 }
