@@ -137,15 +137,44 @@ export default function ProductView() {
 
             </div>
             <hr className="my-2" />
+            {/* Quatation Box or Form */}
+            <div className="my-7">
+                <p className="text-xl capitalize font-bold" >
+                    send your inquiry directly to this supplier
+                </p>
+                {/* Quatation Form */}
+                <div className="px-4 mt-6">
+                    <div>
+                        <label htmlFor="to" className="text-gray-600">To: </label>
+                        <input type="text" name="to" id="to" value="Compaany Name" className="text-gray-800" readOnly />
+                    </div>
+
+                    <div className="my-2">
+                        <label htmlFor="message" className=" text-gray-600">Message</label>
+                        <textarea name="message" id="message" cols="30" rows="5" className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-gray-500"></textarea>
+                    </div>
+
+                    <div className="my-2">
+                        <label htmlFor="to" className="text-gray-600">Quantity: </label>
+                        <input type="text" name="to" id="to" className=" border border-gray-300 rounded-md p-2 focus:outline-none focus:border-gray-500" />
+                    </div>
+                    <button className="bg-gray-500 text-white rounded-lg shadow-md px-6 py-2 hover:bg-gray-700">
+                        Send
+                    </button>
+                </div>
+            </div>
+
+            <hr className="my-3" />
+
             {/* Similar Products */}
-            <div className="my-3">
+            <div div className="my-3" >
                 <p className="text-xl font-bold">
                     Similar Products
                 </p>
                 <div className="my-5">
                     <ProductViewSlider />
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
