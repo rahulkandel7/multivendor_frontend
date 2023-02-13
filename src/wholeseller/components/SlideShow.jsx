@@ -12,7 +12,7 @@ function SlideShow(props) {
                     disableOnInteraction: false,
                 }}
                 modules={[Autoplay]}
-                className="w-[75vw] h-full rounded-md shadow-md"
+                className="w-full md:w-[75vw] h-full rounded-md shadow-md"
             >
 
                 <SwiperSlide>

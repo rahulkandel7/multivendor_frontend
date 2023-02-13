@@ -75,9 +75,9 @@ function App() {
   return (
     <>
       {/* Flex box for categories and slideshow */}
-      <div className="flex gap-2 h-[40vh] mt-10 ">
+      <div className="flex gap-2 h-[20vh] md:h-[40vh] mt-5 md:mt-10 ">
         {/* Displaying Categories */}
-        <div className="flex flex-col-reverse gap-2 overflow-scroll w-[20vw]">
+        <div className="hidden md:flex flex-col-reverse gap-2 overflow-scroll w-[20vw]">
           {
             categories.map((category) => {
               return (
@@ -94,7 +94,7 @@ function App() {
         </div>
       </div>
       {/* First ADS */}
-      <div className="w-full h-32 my-5 rounded-md shadow-md bg-red-300">
+      <div className="w-full h-20 md:h-32 my-5 rounded-md shadow-md bg-red-300">
 
       </div>
 
