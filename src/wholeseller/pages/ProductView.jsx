@@ -36,7 +36,7 @@ export default function ProductView() {
 
     return (
         <div className="mt-10 mb-4">
-            <div className="grid grid-cols-3 gap-5">
+            <div className="md:grid grid-cols-3 gap-5">
                 {/* Image Slider Section */}
                 <div className="">
                     <div>
@@ -61,7 +61,7 @@ export default function ProductView() {
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-3 gap-2 col-span-2">
+                <div className="md:grid grid-cols-3 gap-2 col-span-2">
                     {/* Product Info Section */}
                     <div className="col-span-2">
                         <h2 className="">
