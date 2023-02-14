@@ -1,13 +1,18 @@
 import { Formik } from "formik";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { object, string } from "yup";
 import ApiConstant from "../../constants/ApiConstant";
+import { authActions } from "../../data/auth-slice";
 
 function Login() {
     const loginSchema = object({
         email: string().email().required(),
         password: string().required().min(6),
     });
+
+    const dispatcher = useDispatch();
+    const navigate = useNavigate();
     return (
         <>
             <div className="grid grid-cols-2">
@@ -28,11 +33,13 @@ function Login() {
                             fetch(ApiConstant.API_URL + 'login', {
                                 method: 'POST',
                                 body: formData,
-
                             }).then((response) => {
                                 if (response.ok) {
                                     response.json().then((data) => {
                                         localStorage.setItem('token', data.token);
+                                        dispatcher(authActions.login());
+                                        navigate('/');
+
                                     });
                                 }
                                 else {
@@ -42,6 +49,8 @@ function Login() {
                                 }
 
                             });
+
+
                         }} >
                             {({ values, errors, handleChange, handleSubmit }) => (
                                 <form onSubmit={handleSubmit} >

@@ -1,9 +1,14 @@
 import { Formik } from "formik";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { mixed, object, ref, string } from "yup";
 import ApiConstant from "../../constants/ApiConstant";
 
 function Register() {
+    const dispatcher = useDispatch();
+    const navigate = useNavigate();
+
+
     const registerSchema = object({
         name: string().required("Full Name is required"),
         phone: string().required("Phone Number is required"),
@@ -48,7 +53,6 @@ function Register() {
                                 formData.append('confirm_password', values.confirm_password);
 
                                 fetch(
-
                                     ApiConstant.API_URL + 'register',
                                     {
                                         method: 'POST',
@@ -58,6 +62,8 @@ function Register() {
                                     if (response.ok) {
                                         response.json().then((data) => {
                                             localStorage.setItem('token', data.token);
+                                            dispatcher(authActions.login());
+                                            navigate('/');
                                         });
                                     }
                                     else {

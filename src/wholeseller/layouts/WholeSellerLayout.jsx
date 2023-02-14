@@ -4,11 +4,37 @@ import { GoSearch } from 'react-icons/go';
 import { GrFavorite } from 'react-icons/gr';
 import { RiHome2Line } from 'react-icons/ri';
 import { VscSignOut } from 'react-icons/vsc';
+import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from "react-router";
 import { Link } from 'react-router-dom';
+import ApiConstant from '../../constants/ApiConstant';
+import { authActions } from '../../data/auth-slice';
 import { Footer } from '../components/Footer';
 
 function WholeSellerLayout() {
+    const dispatcher = useDispatch();
+    //Logout Function Code 
+    async function logout() {
+        fetch(ApiConstant.API_URL + 'logout', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            }
+        }).then((response) => {
+            if (response.ok) {
+                response.json().then((data) => {
+                    dispatcher(authActions.logout());
+                });
+            }
+            else {
+                response.json().then((data) => {
+                    alert(data.message);
+                });
+            }
+        });
+
+    }
+    const isLoggedIn = useSelector(state => state.auth.isAuthenticated);
     return (<>
         {/* Desktop Nav Bar Code */}
         <div className="w-11/12 mx-auto pt-2">
@@ -30,18 +56,42 @@ function WholeSellerLayout() {
                 </div>
                 {/* Others icons of the app */}
                 <div className='hidden md:flex gap-5'>
-                    {/* Wishlist Icon */}
-                    <div className='flex item-center h-full justify-center'>
-                        <GrFavorite className='mt-1' /> <p className='pl-2'>Wishlist</p>
-                    </div>
-                    {/* Profile Icon */}
-                    <div className='flex item-center h-full justify-center'>
-                        <AiOutlineUser className='mt-1' /> <p className='pl-2'>Profile</p>
-                    </div>
-                    {/* Logout Icon */}
-                    <div className='flex item-center h-full justify-center'>
-                        <VscSignOut className='mt-1' /> <p className='pl-2'>Logout</p>
-                    </div>
+                    {
+                        isLoggedIn ?
+                            <div className='flex gap-5'>
+                                {/* Wishlist Icon */}
+                                <div className='flex item-center h-full justify-center'>
+                                    <GrFavorite className='mt-1' /> <p className='pl-2'>Wishlist</p>
+                                </div>
+                                {/* Profile Icon */}
+                                <div className='flex item-center h-full justify-center'>
+                                    <AiOutlineUser className='mt-1' /> <p className='pl-2'>Profile</p>
+                                </div>
+                                {/* Logout Icon */}
+                                <div className='flex item-center h-full justify-center cursor-pointer' onClick={() => logout()}>
+                                    <VscSignOut className='mt-1' /> <p className='pl-2'>Logout</p>
+                                </div>
+                            </div> : <div className='flex gap-5'>
+                                {/* Wishlist Icon */}
+                                <div className='flex item-center h-full justify-center'>
+                                    <GrFavorite className='mt-1' /> <p className='pl-2'>Wishlist</p>
+                                </div>
+                                {/* Login Icon */}
+                                <Link to="/login">
+                                    <div className='flex item-center h-full justify-center'>
+                                        <VscSignOut className='mt-1' /> <p className='pl-2'>Login</p>
+                                    </div>
+                                </Link>
+
+                                {/* Register Icon */}
+                                <Link to="/register">
+                                    <div className='flex item-center h-full justify-center'>
+                                        <VscSignOut className='mt-1' /> <p className='pl-2'>Register</p>
+                                    </div>
+                                </Link>
+                            </div>
+                    }
+
                 </div>
             </div>
             <Outlet />
