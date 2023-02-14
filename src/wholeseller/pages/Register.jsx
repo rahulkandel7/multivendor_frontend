@@ -10,6 +10,7 @@ function Register() {
         address: string().required("Address is required"),
         email: string().email().required("Email Address is required"),
         panvat: string().nullable("PAN / VAT is required"),
+        role: string().nullable("Choose what you want to signup as."),
         organization_name: string().required("Organization Name is required"),
         organization_photo: mixed().nullable("Organization Photo is required"),
         office_number: string().required("Office Number is required"),
@@ -29,16 +30,16 @@ function Register() {
                         <h2 className="text-gray-600 text-center">
                             Welcome to multi-vendor marketplace. Please register to proceed.
                         </h2>
-                        <Formik initialValues={{ name: '', phone: '', address: '', email: '', panvat: '', organization_name: '', organization_photo: '', office_number: '', profile_photo: '', password: '', confirm_password: '', }}
+                        <Formik initialValues={{ name: '', phone: '', address: '', email: '', panvat: '', organization_name: '', organization_photo: '', office_number: '', profile_photo: '', password: '', confirm_password: '', role: '' }}
                             validationSchema={registerSchema}
                             onSubmit={(values, { setSubmitting }) => {
-                                console.log(values);
                                 const formData = new FormData();
                                 formData.append('name', values.name);
                                 formData.append('phone', values.phone);
                                 formData.append('address', values.address);
                                 formData.append('email', values.email);
                                 formData.append('panvat', values.panvat);
+                                formData.append('role', values.role);
                                 formData.append('organization_name', values.organization_name);
                                 formData.append('organization_photo', values.organization_photo);
                                 formData.append('office_number', values.office_number);
@@ -195,6 +196,19 @@ function Register() {
                                         <p className="text-red-600 text-sm py-1">{errors.profile_photo}</p>
 
                                     </div>
+
+                                    {/* Role Text Field */}
+                                    <div className="mt-4">
+                                        <label htmlFor="role" className="text-gray-700 font-serif w-full">Signup As: </label>
+                                        <select name="role" onChange={handleChange} id="role" className="border-b border-b-500 w-full outline-none hover: border-b-gray-400 active:border-b-gray-600  mt-2 focus-visible:border-b-gray-600 active:outline-none focus-visible:outline-none">
+                                            <option value="" selected={true} disabled={true}> -- Select Signup As --</option>
+                                            <option value="wholeseller" > Wholeseller </option>
+                                            <option value="distributor" > Distributor </option>
+                                        </select>
+                                        <p className="text-red-600 text-sm py-1">{errors.role}</p>
+
+                                    </div>
+
 
                                     {/* Forget Password Button */}
                                     <p className="text-right text-gray-600 my-4">
