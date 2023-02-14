@@ -36,10 +36,8 @@ function Login() {
                             }).then((response) => {
                                 if (response.ok) {
                                     response.json().then((data) => {
-                                        localStorage.setItem('token', data.token);
-                                        dispatcher(authActions.login());
+                                        dispatcher(authActions.login({ token: data.token, user: data.user }));
                                         navigate('/');
-
                                     });
                                 }
                                 else {
