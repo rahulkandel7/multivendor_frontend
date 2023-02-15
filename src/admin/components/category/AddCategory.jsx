@@ -35,6 +35,7 @@ export default function AddCategory(props) {
                             .then(data => {
                                 console.log(data);
                                 if (data.status != false) {
+                                    props.refresh();
                                     props.hide();
                                 }
                             })

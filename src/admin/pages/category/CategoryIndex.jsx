@@ -5,6 +5,7 @@ import { RiFileSearchLine } from 'react-icons/ri';
 import useSWR from 'swr';
 import ApiConstant from '../../../constants/ApiConstant';
 import AddCategory from '../../components/category/AddCategory';
+import DeleteBox from '../../components/utils/DeleteBox';
 
 export default function CategoryIndex() {
     // For Showing Modal to add Category
@@ -19,7 +20,31 @@ export default function CategoryIndex() {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
     }).then(res => res.json());
-    const { data, error } = useSWR(ApiConstant.API_URL + 'admin/categories', fetcher);
+    const { data, error, mutate } = useSWR(ApiConstant.API_URL + 'admin/categories', fetcher);
+
+    //For getting id
+    const [id, setId] = useState('');
+
+    // For Deleting category
+    const [deleteModal, setDeleteModal] = useState(false);
+    function toggleDeleteModal(id) {
+        setId(id);
+        setDeleteModal(!deleteModal);
+    }
+
+    function deleteCategory() {
+        fetch(ApiConstant.API_URL + 'admin/categories/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => res.json())
+            .then(data => {
+                toggleDeleteModal();
+                mutate();
+                console.log(data);
+            })
+    }
 
     if (data) {
         return (
@@ -81,8 +106,8 @@ export default function CategoryIndex() {
                                         </td>
                                         <td >
                                             <div className='flex items-center justify-center h-full gap-3'>
-                                                <button className='bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md'>Edit</button>
-                                                <button className='bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md'>Delete</button>
+                                                <button className='bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md' >Edit</button>
+                                                <button onClick={() => toggleDeleteModal(category.id)} className='bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md'>Delete</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -97,7 +122,10 @@ export default function CategoryIndex() {
                         </button>
                     </div>
                     {
-                        showModal && <AddCategory hide={toggleModal} />
+                        showModal && <AddCategory hide={toggleModal} refresh={mutate} />
+                    }
+                    {
+                        deleteModal && <DeleteBox hide={toggleDeleteModal} delete={deleteCategory} />
                     }
                 </div>
             </div >
