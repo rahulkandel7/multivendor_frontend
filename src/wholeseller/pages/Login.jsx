@@ -37,7 +37,13 @@ function Login() {
                                 if (response.ok) {
                                     response.json().then((data) => {
                                         dispatcher(authActions.login({ token: data.token, user: data.user }));
-                                        navigate('/');
+                                        if (data.user.role == 'admin') {
+                                            navigate('/admin');
+                                        }
+                                        else {
+
+                                            navigate('/');
+                                        }
                                     });
                                 }
                                 else {
