@@ -55,6 +55,12 @@ export default function AdminLayout() {
             icon: <MdOutlineCategory />,
             link: '/admin/subcategory',
         },
+        {
+            id: 4,
+            name: 'Manage Wholeseller',
+            icon: <MdOutlineCategory />,
+            link: '/admin/subcategory',
+        },
     ];
 
     let activeclassName = 'flex bg-gray-500  text-white border py-2 my-2  rounded-xl  text-white px-3 shadow-sm hover:bg-gray-600';
@@ -64,7 +70,7 @@ export default function AdminLayout() {
             <div className='bg-gray-50'>
                 <div className=' mx-auto py-2'>
                     <div className='flex gap-10'>
-                        <div className='shadow-md w-52 px-5 py-3 min-h-screen h-auto'>
+                        <div className='shadow-md w-64 px-5 py-3 min-h-screen h-auto'>
                             <div className='flex justify-center'>
                                 <img src="./logo.png" alt="Logo" className='w-32' />
 
