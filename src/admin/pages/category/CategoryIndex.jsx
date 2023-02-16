@@ -5,6 +5,7 @@ import { RiFileSearchLine } from 'react-icons/ri';
 import useSWR from 'swr';
 import ApiConstant from '../../../constants/ApiConstant';
 import AddCategory from '../../components/category/AddCategory';
+import EditCategory from '../../components/category/EditCategory';
 import DeleteBox from '../../components/utils/DeleteBox';
 
 export default function CategoryIndex() {
@@ -44,6 +45,13 @@ export default function CategoryIndex() {
                 mutate();
                 console.log(data);
             })
+    }
+
+    //For Editing Category
+    const [editModal, setEditModal] = useState(false);
+    function toggleEditModal(id) {
+        setId(id);
+        setEditModal(!editModal);
     }
 
     if (data) {
@@ -106,7 +114,7 @@ export default function CategoryIndex() {
                                         </td>
                                         <td >
                                             <div className='flex items-center justify-center h-full gap-3'>
-                                                <button className='bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md' >Edit</button>
+                                                <button onClick={() => toggleEditModal(category.id)} className='bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md' >Edit</button>
                                                 <button onClick={() => toggleDeleteModal(category.id)} className='bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md'>Delete</button>
                                             </div>
                                         </td>
@@ -126,6 +134,9 @@ export default function CategoryIndex() {
                     }
                     {
                         deleteModal && <DeleteBox hide={toggleDeleteModal} delete={deleteCategory} />
+                    }
+                    {
+                        editModal && <EditCategory hide={toggleEditModal} id={id} refresh={mutate} />
                     }
                 </div>
             </div >

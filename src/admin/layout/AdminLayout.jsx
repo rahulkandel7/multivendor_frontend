@@ -2,11 +2,14 @@ import React from 'react';
 import { BiCategoryAlt } from 'react-icons/bi';
 import { GoDashboard } from 'react-icons/go';
 import { MdOutlineCategory } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
 import ApiConstant from '../../constants/ApiConstant';
+import { authActions } from '../../data/auth-slice';
+
 
 export default function AdminLayout() {
+    const isLoggedIn = useSelector(state => state.auth.isAuthenticated);
 
     const dispatcher = useDispatch();
     const navigate = useNavigate();
@@ -53,45 +56,50 @@ export default function AdminLayout() {
             link: '/admin',
         },
     ];
-    return (
-        <div className='bg-gray-50'>
-            <div className=' mx-auto py-2'>
-                <div className='flex gap-10'>
-                    <div className='shadow-md w-52 px-5 py-3 min-h-screen h-auto'>
-                        <div className='flex justify-center'>
-                            <img src="logo.png" alt="Logo" className='w-32' />
+    if (isLoggedIn) {
+        return (
+            <div className='bg-gray-50'>
+                <div className=' mx-auto py-2'>
+                    <div className='flex gap-10'>
+                        <div className='shadow-md w-52 px-5 py-3 min-h-screen h-auto'>
+                            <div className='flex justify-center'>
+                                <img src="logo.png" alt="Logo" className='w-32' />
 
-                        </div>
-                        <div>
-                            <ul className='mt-10'>
-                                {
-                                    adminNav.map(nav => {
-                                        return <li key={nav.id} className='py-2 my-2 bg-gray-500 rounded-xl  text-white px-3 shadow-sm hover:bg-gray-600'>
-                                            <Link to={nav.link} className='flex gap-5 items-center'>
-                                                {nav.icon}
-                                                <span>{nav.name}</span>
-                                            </Link>
-                                        </li>
-                                    })
-                                }
+                            </div>
+                            <div>
+                                <ul className='mt-10'>
+                                    {
+                                        adminNav.map(nav => {
+                                            return <li key={nav.id} className='py-2 my-2 bg-gray-500 rounded-xl  text-white px-3 shadow-sm hover:bg-gray-600'>
+                                                <Link to={nav.link} className='flex gap-5 items-center'>
+                                                    {nav.icon}
+                                                    <span>{nav.name}</span>
+                                                </Link>
+                                            </li>
+                                        })
+                                    }
 
-                            </ul>
-                            <div className='absolute bottom-5 shadow-md p-2 bg-indigo-500 text-white rounded-md'>
-                                Powered By BITS
+                                </ul>
+                                <div className='absolute bottom-5 shadow-md p-2 bg-indigo-500 text-white rounded-md'>
+                                    Powered By BITS
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='flex-1 px-4'>
-                        <div className='flex w-full justify-between'>
-                            <h1 className='text-2xl font-bold'>Dashboard</h1>
-                            <button onClick={() => logout()}>
-                                Logout
-                            </button>
+                        <div className='flex-1 px-4'>
+                            <div className='flex w-full justify-between'>
+                                <h1 className='text-2xl font-bold'>Dashboard</h1>
+                                <button onClick={() => logout()}>
+                                    Logout
+                                </button>
+                            </div>
+                            <Outlet />
                         </div>
-                        <Outlet />
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
+    else {
+        return <Navigate to='/login' />
+    }
 }
