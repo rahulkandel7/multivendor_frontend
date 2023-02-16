@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { BiCategoryAlt } from 'react-icons/bi';
 import { IoIosAdd } from 'react-icons/io';
-import { RiFileSearchLine } from 'react-icons/ri';
 import useSWR from 'swr';
 import ApiConstant from '../../../constants/ApiConstant';
 import AddCategory from '../../components/category/AddCategory';
 import EditCategory from '../../components/category/EditCategory';
 import DeleteBox from '../../components/utils/DeleteBox';
+import SearchBox from '../../components/utils/SearchBox';
 
 export default function CategoryIndex() {
     // For Showing Modal to add Category
@@ -54,6 +54,9 @@ export default function CategoryIndex() {
         setEditModal(!editModal);
     }
 
+    //For Searching Category
+    const [search, setSearch] = useState('');
+
     if (data) {
         return (
             <div className='py-5'>
@@ -75,21 +78,7 @@ export default function CategoryIndex() {
 
 
                 {/* Search Box */}
-                <div className="flex justify-end items-center my-3">
-                    <div className="relative">
-                        <input
-                            type="text"
-                            name="search"
-                            id="search"
-                            className="border border-gray-200 pl-5 outline-none focus-visible:border-gray-400 hover:border-gray-300 pr-10 text-gray-500 rounded-full shadow-md shadow-gray-100 focus-visible:shadow-gray-300 py-2"
-                            placeholder={`Search Category ...`}
-
-                        />
-                        <div className="absolute top-[50%] -translate-y-[50%] right-3 text-xl text-gray-500">
-                            <RiFileSearchLine />
-                        </div>
-                    </div>
-                </div>
+                <SearchBox title="Category" change={(e) => setSearch(e.target.value)} />
 
                 {/* Table To Show Category */}
                 <div className='w-full'>
@@ -105,7 +94,13 @@ export default function CategoryIndex() {
                         </thead>
                         <tbody className='w-full'>
                             {
-                                data.data.map((category, index) => {
+                                data.data.filter((category) => {
+                                    if (search == '') {
+                                        return category
+                                    } else if (category.category_name.toLowerCase().includes(search.toLowerCase())) {
+                                        return category
+                                    }
+                                }).map((category, index) => {
                                     return <tr className='border' key={index}>
                                         <td className='px-4'>{index + 1}</td>
                                         <td className='px-4 text-center'>{category.category_name} </td>
@@ -119,10 +114,11 @@ export default function CategoryIndex() {
                                             </div>
                                         </td>
                                     </tr>
+
                                 })
                             }
-
                         </tbody>
+
                     </table>
                     <div className='fixed right-5 bottom-2'>
                         <button onClick={() => toggleModal()} className=' flex justify-center items-center rounded-full bg-green-500 hover:bg-green-600 text-white px-2 py-2 text-2xl' title='Add Category'>
