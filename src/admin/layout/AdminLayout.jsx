@@ -58,7 +58,7 @@ export default function AdminLayout() {
     ];
 
     let activeclassName = 'flex bg-gray-500  text-white border py-2 my-2  rounded-xl  text-white px-3 shadow-sm hover:bg-gray-600';
-    let unactiveclassName = 'flex border-gray-500  text-black py-2 my-2  rounded-xl hover:text-white  text-white px-3 shadow-sm hover:bg-gray-600';
+    let unactiveclassName = 'flex border-gray-500 border  text-black py-2 my-2  rounded-xl hover:text-white px-3 shadow-sm hover:bg-gray-600';
     if (isLoggedIn) {
         return (
             <div className='bg-gray-50'>

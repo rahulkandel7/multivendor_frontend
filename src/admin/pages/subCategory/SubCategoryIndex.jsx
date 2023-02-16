@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { IoIosAdd } from 'react-icons/io';
 import { MdOutlineCategory } from 'react-icons/md';
-import { RiFileSearchLine } from 'react-icons/ri';
 import useSwr from 'swr';
 import ApiConstant from '../../../constants/ApiConstant';
 import AddSubCategory from '../../components/subCategory/AddSubCategory';
 import EditSubCategory from '../../components/subCategory/EditSubCategory';
 import DeleteBox from '../../components/utils/DeleteBox';
+import SearchBox from '../../components/utils/SearchBox';
 
 
 export default function SubCategoryIndex() {
@@ -53,6 +53,9 @@ export default function SubCategoryIndex() {
         setEditModal(!editModal);
     }
 
+    // For Searching Sub Category
+    const [search, setSearch] = useState('');
+
     if (data) {
         return (
             <div className='py-5'>
@@ -74,21 +77,7 @@ export default function SubCategoryIndex() {
 
 
                 {/* Search Box */}
-                <div className="flex justify-end items-center my-3">
-                    <div className="relative">
-                        <input
-                            type="text"
-                            name="search"
-                            id="search"
-                            className="border border-gray-200 pl-5 outline-none focus-visible:border-gray-400 hover:border-gray-300 pr-10 text-gray-500 rounded-full shadow-md shadow-gray-100 focus-visible:shadow-gray-300 py-2"
-                            placeholder={`Search Category ...`}
-
-                        />
-                        <div className="absolute top-[50%] -translate-y-[50%] right-3 text-xl text-gray-500">
-                            <RiFileSearchLine />
-                        </div>
-                    </div>
-                </div>
+                <SearchBox title="Sub Category" change={(e) => setSearch(e.target.value)} />
 
                 {/* Table To Show Category */}
                 <div className='w-full'>
@@ -104,7 +93,14 @@ export default function SubCategoryIndex() {
                         </thead>
                         <tbody className='w-full'>
                             {
-                                data.data.map((subCategory, index) => {
+                                data.data.filter((subCategory) => {
+                                    if (search == '') {
+                                        return subCategory;
+                                    }
+                                    else if (subCategory.sub_category_name.toLowerCase().includes(search.toLowerCase())) {
+                                        return subCategory;
+                                    }
+                                }).map((subCategory, index) => {
                                     return <tr className='border' key={index}>
                                         <td className='px-4'>{index + 1}</td>
                                         <td className='px-4 text-center'>{subCategory.sub_category_name} </td>
@@ -119,6 +115,7 @@ export default function SubCategoryIndex() {
                                         </td>
                                     </tr>
                                 })
+
                             }
 
                         </tbody>
