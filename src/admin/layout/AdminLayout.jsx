@@ -53,7 +53,7 @@ export default function AdminLayout() {
             id: 3,
             name: 'Sub Category',
             icon: <MdOutlineCategory />,
-            link: '/admin',
+            link: '/admin/subcategory',
         },
     ];
     if (isLoggedIn) {
