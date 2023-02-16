@@ -3,7 +3,7 @@ import { BiCategoryAlt } from 'react-icons/bi';
 import { GoDashboard } from 'react-icons/go';
 import { MdOutlineCategory } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { Navigate, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import ApiConstant from '../../constants/ApiConstant';
 import { authActions } from '../../data/auth-slice';
 
@@ -41,7 +41,7 @@ export default function AdminLayout() {
             id: 1,
             name: 'Dashboard',
             icon: <GoDashboard />,
-            link: '/admin',
+            link: '/admin/dashboard',
         },
         {
             id: 2,
@@ -56,6 +56,9 @@ export default function AdminLayout() {
             link: '/admin/subcategory',
         },
     ];
+
+    let activeclassName = 'flex bg-gray-500  text-white border py-2 my-2  rounded-xl  text-white px-3 shadow-sm hover:bg-gray-600';
+    let unactiveclassName = 'flex border-gray-500  text-black py-2 my-2  rounded-xl hover:text-white  text-white px-3 shadow-sm hover:bg-gray-600';
     if (isLoggedIn) {
         return (
             <div className='bg-gray-50'>
@@ -63,18 +66,22 @@ export default function AdminLayout() {
                     <div className='flex gap-10'>
                         <div className='shadow-md w-52 px-5 py-3 min-h-screen h-auto'>
                             <div className='flex justify-center'>
-                                <img src="logo.png" alt="Logo" className='w-32' />
+                                <img src="./logo.png" alt="Logo" className='w-32' />
 
                             </div>
                             <div>
                                 <ul className='mt-10'>
                                     {
-                                        adminNav.map(nav => {
-                                            return <li key={nav.id} className='py-2 my-2 bg-gray-500 rounded-xl  text-white px-3 shadow-sm hover:bg-gray-600'>
-                                                <Link to={nav.link} className='flex gap-5 items-center'>
-                                                    {nav.icon}
-                                                    <span>{nav.name}</span>
-                                                </Link>
+                                        adminNav.map((nav, index) => {
+                                            return <li key={nav.id} >
+                                                <NavLink key={index} to={nav.link} className={({ isActive }) =>
+                                                    isActive ? activeclassName : unactiveclassName
+                                                }>
+                                                    <p className='flex gap-5 items-center'>
+                                                        {nav.icon}
+                                                        <span>{nav.name}</span>
+                                                    </p>
+                                                </NavLink>
                                             </li>
                                         })
                                     }

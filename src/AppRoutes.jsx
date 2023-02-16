@@ -28,7 +28,7 @@ export default function AppRoutes() {
                 </Route>
 
                 <Route path="/admin" element={<AdminLayout />}>
-                    <Route index element={<AdminDashboard />} />
+                    <Route path="dashboard" element={<AdminDashboard />} />
                     <Route path="category" element={<CategoryIndex />} />
                     <Route path="subcategory" element={<SubCategoryIndex />} />
                 </Route>
