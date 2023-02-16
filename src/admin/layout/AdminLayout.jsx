@@ -1,5 +1,5 @@
 import React from 'react';
-import { BiCategoryAlt } from 'react-icons/bi';
+import { BiCategoryAlt, BiSlideshow } from 'react-icons/bi';
 import { GoDashboard } from 'react-icons/go';
 import { MdOutlineCategory } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
@@ -45,19 +45,19 @@ export default function AdminLayout() {
         },
         {
             id: 2,
+            name: 'Slideshow',
+            icon: <BiSlideshow />,
+            link: '/admin/slideshow',
+        },
+        {
+            id: 3,
             name: 'Category',
             icon: <BiCategoryAlt />,
             link: '/admin/category',
         },
         {
-            id: 3,
-            name: 'Sub Category',
-            icon: <MdOutlineCategory />,
-            link: '/admin/subcategory',
-        },
-        {
             id: 4,
-            name: 'Manage Wholeseller',
+            name: 'Sub Category',
             icon: <MdOutlineCategory />,
             link: '/admin/subcategory',
         },
@@ -100,7 +100,7 @@ export default function AdminLayout() {
                         </div>
                         <div className='flex-1 px-4'>
                             <div className='flex w-full justify-between'>
-                                <h1 className='text-2xl font-bold'>Dashboard</h1>
+                                <h1 className='text-2xl font-bold'>Multivendor App</h1>
                                 <button onClick={() => logout()}>
                                     Logout
                                 </button>

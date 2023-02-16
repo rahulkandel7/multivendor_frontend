@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AdminLayout from "./admin/layout/AdminLayout";
 import AdminDashboard from "./admin/pages/AdminDashboard";
 import CategoryIndex from "./admin/pages/category/CategoryIndex";
+import SlideshowIndex from "./admin/pages/slideshow/SlideshowIndex";
 import SubCategoryIndex from "./admin/pages/subCategory/SubCategoryIndex";
 import App from "./App";
 import WholeSellerLayout from "./wholeseller/layouts/WholeSellerLayout";
@@ -29,6 +30,7 @@ export default function AppRoutes() {
 
                 <Route path="/admin" element={<AdminLayout />}>
                     <Route path="dashboard" element={<AdminDashboard />} />
+                    <Route path="slideshow" element={<SlideshowIndex />} />
                     <Route path="category" element={<CategoryIndex />} />
                     <Route path="subcategory" element={<SubCategoryIndex />} />
                 </Route>

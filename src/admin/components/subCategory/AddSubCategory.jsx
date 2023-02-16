@@ -63,7 +63,7 @@ export default function AddSubCategory(props) {
                                     <p className="text-red-600 text-sm py-1">{errors.sub_category_name}</p>
                                 </div>
 
-                                {/* Sub Category Name Text Field */}
+                                {/* Select Category Name Text Field */}
                                 <div className="mt-4">
                                     <label htmlFor="category_id" className="text-gray-700 font-serif w-full">Select Category</label>
                                     <select name="category_id" id="category_id" onChange={handleChange} className="mt-1 border px-1 rounded w-full outline-none hover: border-gray-400 py-1 active:border-gray-600 focus-visible:border-gray-600 active:outline-none focus-visible:outline-none">
