@@ -105,7 +105,9 @@ export default function CategoryIndex() {
                                         <td className='px-4'>{index + 1}</td>
                                         <td className='px-4 text-center'>{category.category_name} </td>
                                         <td className='px-4 text-center'>
-                                            <img src={ApiConstant.API_IMAGE_URL + category.category_photo} alt={category.category_name} className="w-32 mx-auto py-2" />
+                                            {
+                                                category.category_photo == null ? <p>-</p> :
+                                                    <img src={ApiConstant.API_IMAGE_URL + category.category_photo} alt={category.category_name} className="w-32 mx-auto py-2" />}
                                         </td>
                                         <td >
                                             <div className='flex items-center justify-center h-full gap-3'>

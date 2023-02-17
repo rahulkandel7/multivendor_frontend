@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { mixed, object, ref, string } from "yup";
 import ApiConstant from "../../constants/ApiConstant";
+import { authActions } from "../../data/auth-slice";
 
 function Register() {
     const dispatcher = useDispatch();

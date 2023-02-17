@@ -38,10 +38,11 @@ function Login() {
                                     response.json().then((data) => {
                                         dispatcher(authActions.login({ token: data.token, user: data.user }));
                                         if (data.user.role == 'admin') {
-                                            navigate('/admin');
+                                            navigate('/admin/dashboard');
                                         }
-                                        else {
-
+                                        else if (data.user.role == 'distributor') {
+                                            navigate('/distributor/dashboard');
+                                        } else {
                                             navigate('/');
                                         }
                                     });
