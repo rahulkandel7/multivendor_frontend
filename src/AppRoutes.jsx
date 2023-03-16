@@ -7,6 +7,9 @@ import SubCategoryIndex from "./admin/pages/subCategory/SubCategoryIndex";
 import App from "./App";
 import DistributorLayout from "./distributor/layouts/DistributorLayout";
 import DistributorDashboard from "./distributor/pages/DistributorDashboard";
+import AddProduct from "./distributor/pages/products/AddProduct";
+import EditProduct from "./distributor/pages/products/EditProduct";
+import ProductIndex from "./distributor/pages/products/ProductIndex";
 import WholeSellerLayout from "./wholeseller/layouts/WholeSellerLayout";
 import Category from "./wholeseller/pages/Category";
 import Login from "./wholeseller/pages/login";
@@ -41,6 +44,11 @@ export default function AppRoutes() {
                 {/* Distributo Routes */}
                 <Route path="/distributor" element={<DistributorLayout />}>
                     <Route path="dashboard" element={<DistributorDashboard />} />
+                    <Route path="products">
+                        <Route index element={<ProductIndex />} />
+                        <Route path="add" element={<AddProduct />} />
+                        <Route path="edit/:id" element={<EditProduct />} />
+                    </Route>
                 </Route>
             </Routes>
         </Router>

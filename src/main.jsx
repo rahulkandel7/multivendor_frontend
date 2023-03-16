@@ -13,5 +13,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes />
 
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )

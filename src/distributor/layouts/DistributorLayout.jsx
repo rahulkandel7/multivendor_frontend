@@ -1,6 +1,7 @@
 import React from 'react';
-import { BiCategoryAlt, BiSlideshow } from 'react-icons/bi';
+import { BiCategoryAlt } from 'react-icons/bi';
 import { GoDashboard } from 'react-icons/go';
+import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import ApiConstant from '../../constants/ApiConstant';
@@ -40,13 +41,13 @@ export default function DistributorLayout() {
             id: 1,
             name: 'Dashboard',
             icon: <GoDashboard />,
-            link: '/admin/dashboard',
+            link: '/distributor/dashboard',
         },
         {
             id: 2,
             name: 'Products',
-            icon: <BiSlideshow />,
-            link: '/admin/slideshow',
+            icon: <MdOutlineProductionQuantityLimits />,
+            link: '/distributor/products',
         },
         {
             id: 3,
